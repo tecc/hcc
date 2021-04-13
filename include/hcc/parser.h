@@ -50,6 +50,9 @@ typedef struct HcDeclarationStatement_ {
 typedef struct HcVarDeclarationStatement_ {
     HcString identifier;
     HcString* type;
+    _Bool save;
+    _Bool global;
+    _Bool native;
 } HcVarDeclarationStatement;
 
 typedef struct HcParser_ {

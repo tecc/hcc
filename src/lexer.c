@@ -101,6 +101,7 @@ HcOperator HcOperator_getOperator(HcString str) {
     op(LIST_END);
     op(PARAM_LIST_BEGIN);
     op(PARAM_LIST_END);
+    op(STATEMENT_END);
     // arithmetic
     op(ADD);
     op(INCREMENT);
@@ -163,6 +164,8 @@ HcString HcOperator_getOperatorString(HcOperator op) {
             return HcString_new(",", 1);
         case HC_OPERATOR_MEMBER_ACCESSOR:
             return HcString_new(".", 1);
+        case HC_OPERATOR_STATEMENT_END:
+            return HcString_new("\n", 1);
         // comparison
         case HC_OPERATOR_EQUAL:
             return HcString_new("==", 2);
