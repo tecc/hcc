@@ -1,6 +1,7 @@
 #include <hcc/string.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 HcString HcString_new(const HcChar* content, size_t size) {
     HcString str;
@@ -20,6 +21,14 @@ HcChar* HcString_toCharPtr(HcString s) {
         cptr[i] = s.data[i];
     }
     return cptr;
+}
+HcChar* HcString_toCharPtr_p(HcString* s) {
+    if (s == NULL) {
+        HcChar* dat = calloc(2, sizeof(HcChar));
+        dat[0] = ' ';
+        return dat;
+    }
+    return HcString_toCharPtr(*s);
 }
 
 HcString HcString_append(HcString a, HcString b) {
@@ -69,4 +78,13 @@ bool HcString_contains_c(HcString str, HcChar target) {
         }
     }
     return false;
+}
+
+HcString HcString_format(const HcChar* fmt, size_t maxSize, ...) {
+    va_list ap;
+    va_start(ap, maxSize);
+    HcChar* dat = (char*) calloc(maxSize, sizeof(char));
+    size_t len = snprintf(dat, maxSize, fmt, ap);
+    va_end(ap);
+    return HcString_new(dat, len);
 }

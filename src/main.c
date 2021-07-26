@@ -31,21 +31,21 @@ int main(int argc, char** argv) {
     HcLexer_setContent(&lexer, str);
     HcLexer_lex(&lexer);
     // debug stuff
-#ifdef DEBUG
-    printf("Printing tokens...\n");
+    #ifdef DEBUG
+    printf("Printing tokens (%zu)...\n", lexer.tokenCount);
     for (size_t i = 0; i < lexer.tokenCount; i++) {
         printf("Token %05zu: %s\n", i, HcString_toCharPtr(HcToken_toString(lexer.tokens[i])));
     }
-#endif
+    #endif
 
     // parsing
     HcParser parser = HcParser_new();
     HcParser_setTokens(&parser, lexer.tokens, lexer.tokenCount);
     HcParser_parse(&parser);
     #ifdef DEBUG
-    printf("Printing statements...\n");
+    printf("Printing statements (%zu)...\n", parser.statementCount);
     for (size_t i = 0; i < parser.statementCount; i++) {
-        printf("Statement %05zu: {TODO}\n");
+        printf("Statement %05zu: %s\n", i, HcString_toCharPtr(HcStatement_toString(parser.statements[i])));
     }
     #endif
 

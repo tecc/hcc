@@ -10,7 +10,9 @@ namespace Scoreboard {
  * @param player The player that joined
  */
 on join(player) {
-    player.sendMessage("Hello!")
+    var dat = "Hello, "
+    dat += "world!"
+    player.sendMessage(dat)
 }
 // block equivalent
 line([block("PLAYER_EVENT", "JOIN"), block("PLAYER_ACTION", "SEND_MESSAGE", [text("Hello!")])])

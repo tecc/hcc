@@ -26,6 +26,7 @@ HcString HcString_new(const HcChar* content, size_t length);
 HcString HcString_new_a(const HcChar* content);
 
 HcChar* HcString_toCharPtr(HcString s);
+HcChar* HcString_toCharPtr_p(HcString* s);
 
 HcString HcString_append(HcString a, HcString b);
 HcString HcString_append_s(HcString a, const HcChar* b);
@@ -38,5 +39,7 @@ int HcString_compare_s(HcString a, const HcChar* b);
 
 bool HcString_contains(HcString str, HcString target);
 bool HcString_contains_c(HcString str, HcChar target);
+
+HcString HcString_format(const HcChar* fmt, size_t maxSize, ...);
 
 #endif

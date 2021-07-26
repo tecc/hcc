@@ -9,8 +9,8 @@ add_executable(hcc
     include/hcc/lexer.h
     include/hcc/parser.h
     include/hcc/string.h
-    src/lexer.c
-    src/parser.c
+    src/lexer.c src/lexer_util.c
+    src/parser.c src/parser_util.c
     src/string.c
     )
 target_include_directories(hcc PRIVATE include)
